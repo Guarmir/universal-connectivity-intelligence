@@ -11,6 +11,7 @@ from core.security_engine.risk_analyzer import analyze_risk
 from core.monitor.local_logger import save_log
 from core.monitor.history_reader import read_last_logs
 from core.emergency_control.emergency_controller import emergency_check
+from core.failover.failover_engine import evaluate_failover
 
 
 def check_internet():
@@ -134,6 +135,10 @@ def run_scan():
         emergency = emergency_check(
     risk["risk_level"]
     )
+        failover = evaluate_failover(
+    recommended,
+    risk
+    )
 
         print("\nANÁLISE DE SEGURANÇA")
         print("-" * 60)
@@ -150,6 +155,11 @@ def run_scan():
         print(
             f"Mensagem: {risk['message']}"
         )
+        print("\nFAILOVER ENGINE")
+        print("-" * 60)
+        print(f"Status: {failover['status']}")
+        print(f"Ação: {failover['action']}")
+        print(f"Mensagem: {failover['message']}")
     if recommended:
         save_log(
         f"Recomendação: {recommended['name']} | "
