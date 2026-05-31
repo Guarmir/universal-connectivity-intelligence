@@ -8,6 +8,7 @@ from core.decision_engine.interface_decision import (
 )
 
 from core.security_engine.risk_analyzer import analyze_risk
+from core.monitor.local_logger import save_log
 
 
 def check_internet():
@@ -140,6 +141,14 @@ def run_scan():
         print(
             f"Mensagem: {risk['message']}"
         )
+    if recommended:
+        save_log(
+        f"Recomendação: {recommended['name']} | "
+        f"IP: {recommended['ip']} | "
+        f"Trust Score: {recommended['trust_score']}/100 | "
+        f"Risco: {risk['risk_level']} | "
+        f"Ação: {risk['action']}"
+    )
 
     print("\n" + "=" * 60)
 
