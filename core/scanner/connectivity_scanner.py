@@ -2,6 +2,11 @@ import socket
 import psutil
 from datetime import datetime
 
+from core.decision_engine.interface_decision import (
+    recommend_best_interface,
+    explain_recommendation,
+)
+
 
 def check_internet():
     try:
@@ -43,11 +48,9 @@ def calculate_trust_score(classification):
     return scores.get(classification, 0)
 
 
-def list_interfaces():
+def collect_interfaces():
     interfaces = psutil.net_if_addrs()
-
-    print("\nINTERFACES DETECTADAS")
-    print("-" * 60)
+    collected = []
 
     for interface_name, interface_addresses in interfaces.items():
         for address in interface_addresses:
@@ -59,10 +62,14 @@ def list_interfaces():
 
                 trust_score = calculate_trust_score(classification)
 
-                print(f"\nInterface: {interface_name}")
-                print(f"IPv4: {address.address}")
-                print(f"Classificação: {classification}")
-                print(f"Trust Score: {trust_score}/100")
+                collected.append({
+                    "name": interface_name,
+                    "ip": address.address,
+                    "classification": classification,
+                    "trust_score": trust_score,
+                })
+
+    return collected
 
 
 def run_scan():
@@ -77,7 +84,22 @@ def run_scan():
     else:
         print("Status: SEM INTERNET")
 
-    list_interfaces()
+    interfaces = collect_interfaces()
+
+    print("\nINTERFACES DETECTADAS")
+    print("-" * 60)
+
+    for interface in interfaces:
+        print(f"\nInterface: {interface['name']}")
+        print(f"IPv4: {interface['ip']}")
+        print(f"Classificação: {interface['classification']}")
+        print(f"Trust Score: {interface['trust_score']}/100")
+
+    print("\nRECOMENDAÇÃO DO SISTEMA")
+    print("-" * 60)
+
+    recommended = recommend_best_interface(interfaces)
+    print(explain_recommendation(recommended))
 
     print("\n" + "=" * 60)
 
