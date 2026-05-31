@@ -68,3 +68,30 @@ O sistema poderá evoluir para:
 - plataforma SaaS;
 - licenciamento para fabricantes;
 - integração com redes móveis, satélite e mesh.
+## Arquitetura Offline First
+
+O núcleo da Inteligência Universal de Conectividade deve operar localmente, mesmo sem internet.
+
+A internet não é uma dependência do sistema. Ela é um recurso analisado, utilizado e otimizado pelo sistema.
+
+Mesmo offline, o sistema deve ser capaz de:
+
+- iniciar;
+- detectar interfaces;
+- procurar redes disponíveis;
+- classificar conexões;
+- avaliar riscos básicos;
+- bloquear conexões inseguras;
+- acionar modo emergência;
+- registrar logs locais;
+- utilizar proteções locais disponíveis.
+
+Quando online, o sistema poderá ativar recursos adicionais, como:
+
+- atualização de regras;
+- sincronização;
+- inteligência remota;
+- dashboard externo;
+- alertas;
+- backup;
+- telemetria.
