@@ -7,6 +7,8 @@ from core.decision_engine.interface_decision import (
     explain_recommendation,
 )
 
+from core.security_engine.risk_analyzer import analyze_risk
+
 
 def check_internet():
     try:
@@ -21,16 +23,22 @@ def classify_interface(name, ip):
 
     if "loopback" in name_lower:
         return "LOOPBACK"
+
     elif "vpn" in name_lower:
         return "VPN"
+
     elif ip.startswith("169.254"):
         return "INVALIDA"
+
     elif "virtual" in name_lower:
         return "VIRTUAL"
+
     elif "wi-fi" in name_lower or "wifi" in name_lower:
         return "REAL"
+
     elif "ethernet" in name_lower:
         return "REAL"
+
     else:
         return "DESCONHECIDA"
 
@@ -53,14 +61,19 @@ def collect_interfaces():
     collected = []
 
     for interface_name, interface_addresses in interfaces.items():
+
         for address in interface_addresses:
+
             if address.family == socket.AF_INET:
+
                 classification = classify_interface(
                     interface_name,
                     address.address
                 )
 
-                trust_score = calculate_trust_score(classification)
+                trust_score = calculate_trust_score(
+                    classification
+                )
 
                 collected.append({
                     "name": interface_name,
@@ -73,6 +86,7 @@ def collect_interfaces():
 
 
 def run_scan():
+
     print("=" * 60)
     print("INTELIGÊNCIA UNIVERSAL DE CONECTIVIDADE")
     print("=" * 60)
@@ -90,6 +104,7 @@ def run_scan():
     print("-" * 60)
 
     for interface in interfaces:
+
         print(f"\nInterface: {interface['name']}")
         print(f"IPv4: {interface['ip']}")
         print(f"Classificação: {interface['classification']}")
@@ -98,8 +113,33 @@ def run_scan():
     print("\nRECOMENDAÇÃO DO SISTEMA")
     print("-" * 60)
 
-    recommended = recommend_best_interface(interfaces)
-    print(explain_recommendation(recommended))
+    recommended = recommend_best_interface(
+        interfaces
+    )
+
+    print(
+        explain_recommendation(
+            recommended
+        )
+    )
+
+    if recommended:
+
+        risk = analyze_risk(
+            recommended["trust_score"]
+        )
+
+        print("\nANÁLISE DE SEGURANÇA")
+        print("-" * 60)
+        print(
+            f"Nível de risco: {risk['risk_level']}"
+        )
+        print(
+            f"Ação recomendada: {risk['action']}"
+        )
+        print(
+            f"Mensagem: {risk['message']}"
+        )
 
     print("\n" + "=" * 60)
 
