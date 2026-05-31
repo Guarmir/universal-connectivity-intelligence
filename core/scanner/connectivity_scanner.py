@@ -11,20 +11,53 @@ def check_internet():
         return False
 
 
+def classify_interface(name, ip):
+
+    name_lower = name.lower()
+
+    if "loopback" in name_lower:
+        return "LOOPBACK"
+
+    elif "vpn" in name_lower:
+        return "VPN"
+
+    elif ip.startswith("169.254"):
+        return "INVALIDA"
+
+    elif "virtual" in name_lower:
+        return "VIRTUAL"
+
+    elif "wi-fi" in name_lower or "wifi" in name_lower:
+        return "REAL"
+
+    elif "ethernet" in name_lower:
+        return "REAL"
+
+    else:
+        return "DESCONHECIDA"
+
+
 def list_interfaces():
+
     interfaces = psutil.net_if_addrs()
 
     print("\nINTERFACES DETECTADAS")
-    print("-" * 50)
+    print("-" * 60)
 
     for interface_name, interface_addresses in interfaces.items():
-
-        print(f"\nInterface: {interface_name}")
 
         for address in interface_addresses:
 
             if address.family == socket.AF_INET:
+
+                classification = classify_interface(
+                    interface_name,
+                    address.address
+                )
+
+                print(f"\nInterface: {interface_name}")
                 print(f"IPv4: {address.address}")
+                print(f"Classificação: {classification}")
 
 
 def run_scan():
