@@ -10,6 +10,7 @@ from core.decision_engine.interface_decision import (
 from core.security_engine.risk_analyzer import analyze_risk
 from core.monitor.local_logger import save_log
 from core.monitor.history_reader import read_last_logs
+from core.emergency_control.emergency_controller import emergency_check
 
 
 def check_internet():
@@ -130,12 +131,19 @@ def run_scan():
         risk = analyze_risk(
             recommended["trust_score"]
         )
+        emergency = emergency_check(
+    risk["risk_level"]
+    )
 
         print("\nANÁLISE DE SEGURANÇA")
         print("-" * 60)
         print(
             f"Nível de risco: {risk['risk_level']}"
         )
+        print("\nCONTROLE DE EMERGÊNCIA")
+        print("-" * 60)
+        print(f"Status: {emergency['status']}")
+        print(f"Ação: {emergency['action']}")
         print(
             f"Ação recomendada: {risk['action']}"
         )
