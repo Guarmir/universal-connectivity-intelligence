@@ -1,4 +1,5 @@
 import socket
+import psutil
 from datetime import datetime
 
 
@@ -10,28 +11,38 @@ def check_internet():
         return False
 
 
-def get_local_ip():
-    try:
-        hostname = socket.gethostname()
-        return socket.gethostbyname(hostname)
-    except:
-        return "IP não encontrado"
+def list_interfaces():
+    interfaces = psutil.net_if_addrs()
+
+    print("\nINTERFACES DETECTADAS")
+    print("-" * 50)
+
+    for interface_name, interface_addresses in interfaces.items():
+
+        print(f"\nInterface: {interface_name}")
+
+        for address in interface_addresses:
+
+            if address.family == socket.AF_INET:
+                print(f"IPv4: {address.address}")
 
 
 def run_scan():
-    print("=" * 50)
+
+    print("=" * 60)
     print("INTELIGÊNCIA UNIVERSAL DE CONECTIVIDADE")
-    print("=" * 50)
+    print("=" * 60)
 
     print(f"Data/Hora: {datetime.now()}")
-    print(f"IP Local: {get_local_ip()}")
 
     if check_internet():
         print("Status: INTERNET DISPONÍVEL")
     else:
         print("Status: SEM INTERNET")
 
-    print("=" * 50)
+    list_interfaces()
+
+    print("\n" + "=" * 60)
 
 
 if __name__ == "__main__":
