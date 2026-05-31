@@ -1,1 +1,2 @@
 [2026-05-31 16:27:03.239747] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 16:41:53.544200] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR

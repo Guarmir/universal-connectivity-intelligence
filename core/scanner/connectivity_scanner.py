@@ -9,6 +9,7 @@ from core.decision_engine.interface_decision import (
 
 from core.security_engine.risk_analyzer import analyze_risk
 from core.monitor.local_logger import save_log
+from core.monitor.history_reader import read_last_logs
 
 
 def check_internet():
@@ -149,6 +150,16 @@ def run_scan():
         f"Risco: {risk['risk_level']} | "
         f"Ação: {risk['action']}"
     )
+        print("\nHISTÓRICO RECENTE")
+    print("-" * 60)
+
+    history = read_last_logs(limit=5)
+
+    if history:
+        for line in history:
+            print(line.strip())
+    else:
+        print("Nenhum histórico encontrado.")
 
     print("\n" + "=" * 60)
 
