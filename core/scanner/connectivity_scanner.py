@@ -7,22 +7,45 @@ from core.decision_engine.interface_decision import (
     explain_recommendation,
 )
 
-from core.security_engine.risk_analyzer import analyze_risk
-from core.monitor.local_logger import save_log
-from core.monitor.history_reader import read_last_logs
-from core.emergency_control.emergency_controller import emergency_check
-from core.failover.failover_engine import evaluate_failover
+from core.security_engine.risk_analyzer import (
+    analyze_risk,
+)
+
+from core.emergency_control.emergency_controller import (
+    emergency_check,
+)
+
+from core.failover.failover_engine import (
+    evaluate_failover,
+)
+
+from core.monitor.local_logger import (
+    save_log,
+)
+
+from core.monitor.history_reader import (
+    read_last_logs,
+)
+
+from core.monitor.stability_engine import (
+    calculate_stability_score,
+)
 
 
 def check_internet():
     try:
-        socket.create_connection(("8.8.8.8", 53), timeout=3)
+        socket.create_connection(
+            ("8.8.8.8", 53),
+            timeout=3
+        )
         return True
+
     except OSError:
         return False
 
 
 def classify_interface(name, ip):
+
     name_lower = name.lower()
 
     if "loopback" in name_lower:
@@ -37,7 +60,10 @@ def classify_interface(name, ip):
     elif "virtual" in name_lower:
         return "VIRTUAL"
 
-    elif "wi-fi" in name_lower or "wifi" in name_lower:
+    elif (
+        "wi-fi" in name_lower
+        or "wifi" in name_lower
+    ):
         return "REAL"
 
     elif "ethernet" in name_lower:
@@ -48,6 +74,7 @@ def classify_interface(name, ip):
 
 
 def calculate_trust_score(classification):
+
     scores = {
         "REAL": 80,
         "VPN": 60,
@@ -61,10 +88,15 @@ def calculate_trust_score(classification):
 
 
 def collect_interfaces():
+
     interfaces = psutil.net_if_addrs()
+
     collected = []
 
-    for interface_name, interface_addresses in interfaces.items():
+    for (
+        interface_name,
+        interface_addresses
+    ) in interfaces.items():
 
         for address in interface_addresses:
 
@@ -75,8 +107,10 @@ def collect_interfaces():
                     address.address
                 )
 
-                trust_score = calculate_trust_score(
-                    classification
+                trust_score = (
+                    calculate_trust_score(
+                        classification
+                    )
                 )
 
                 collected.append({
@@ -92,15 +126,24 @@ def collect_interfaces():
 def run_scan():
 
     print("=" * 60)
-    print("INTELIGÊNCIA UNIVERSAL DE CONECTIVIDADE")
+    print(
+        "INTELIGÊNCIA UNIVERSAL "
+        "DE CONECTIVIDADE"
+    )
     print("=" * 60)
 
-    print(f"Data/Hora: {datetime.now()}")
+    print(
+        f"Data/Hora: {datetime.now()}"
+    )
 
     if check_internet():
-        print("Status: INTERNET DISPONÍVEL")
+        print(
+            "Status: INTERNET DISPONÍVEL"
+        )
     else:
-        print("Status: SEM INTERNET")
+        print(
+            "Status: SEM INTERNET"
+        )
 
     interfaces = collect_interfaces()
 
@@ -109,16 +152,33 @@ def run_scan():
 
     for interface in interfaces:
 
-        print(f"\nInterface: {interface['name']}")
-        print(f"IPv4: {interface['ip']}")
-        print(f"Classificação: {interface['classification']}")
-        print(f"Trust Score: {interface['trust_score']}/100")
+        print(
+            f"\nInterface: "
+            f"{interface['name']}"
+        )
+
+        print(
+            f"IPv4: "
+            f"{interface['ip']}"
+        )
+
+        print(
+            f"Classificação: "
+            f"{interface['classification']}"
+        )
+
+        print(
+            f"Trust Score: "
+            f"{interface['trust_score']}/100"
+        )
 
     print("\nRECOMENDAÇÃO DO SISTEMA")
     print("-" * 60)
 
-    recommended = recommend_best_interface(
-        interfaces
+    recommended = (
+        recommend_best_interface(
+            interfaces
+        )
     )
 
     print(
@@ -132,52 +192,111 @@ def run_scan():
         risk = analyze_risk(
             recommended["trust_score"]
         )
+
+        stability_score = (
+            calculate_stability_score(
+                recommended["name"]
+            )
+        )
+
         emergency = emergency_check(
-    risk["risk_level"]
-    )
+            risk["risk_level"]
+        )
+
         failover = evaluate_failover(
-    recommended,
-    risk
-    )
+            recommended,
+            risk
+        )
 
         print("\nANÁLISE DE SEGURANÇA")
         print("-" * 60)
+
         print(
-            f"Nível de risco: {risk['risk_level']}"
+            f"Nível de risco: "
+            f"{risk['risk_level']}"
         )
-        print("\nCONTROLE DE EMERGÊNCIA")
+
+        print(
+            f"Ação recomendada: "
+            f"{risk['action']}"
+        )
+
+        print(
+            f"Mensagem: "
+            f"{risk['message']}"
+        )
+
+        print(
+            "\nESTABILIDADE HISTÓRICA"
+        )
+
         print("-" * 60)
-        print(f"Status: {emergency['status']}")
-        print(f"Ação: {emergency['action']}")
+
         print(
-            f"Ação recomendada: {risk['action']}"
+            f"Estabilidade: "
+            f"{stability_score}/100"
         )
+
         print(
-            f"Mensagem: {risk['message']}"
+            "\nCONTROLE DE EMERGÊNCIA"
         )
+
+        print("-" * 60)
+
+        print(
+            f"Status: "
+            f"{emergency['status']}"
+        )
+
+        print(
+            f"Ação: "
+            f"{emergency['action']}"
+        )
+
         print("\nFAILOVER ENGINE")
         print("-" * 60)
-        print(f"Status: {failover['status']}")
-        print(f"Ação: {failover['action']}")
-        print(f"Mensagem: {failover['message']}")
-    if recommended:
+
+        print(
+            f"Status: "
+            f"{failover['status']}"
+        )
+
+        print(
+            f"Ação: "
+            f"{failover['action']}"
+        )
+
+        print(
+            f"Mensagem: "
+            f"{failover['message']}"
+        )
+
         save_log(
-        f"Recomendação: {recommended['name']} | "
-        f"IP: {recommended['ip']} | "
-        f"Trust Score: {recommended['trust_score']}/100 | "
-        f"Risco: {risk['risk_level']} | "
-        f"Ação: {risk['action']}"
-    )
-        print("\nHISTÓRICO RECENTE")
+            f"Recomendação: "
+            f"{recommended['name']} | "
+            f"IP: {recommended['ip']} | "
+            f"Trust Score: "
+            f"{recommended['trust_score']}/100 | "
+            f"Risco: "
+            f"{risk['risk_level']} | "
+            f"Ação: "
+            f"{risk['action']}"
+        )
+
+    print("\nHISTÓRICO RECENTE")
     print("-" * 60)
 
     history = read_last_logs(limit=5)
 
     if history:
+
         for line in history:
             print(line.strip())
+
     else:
-        print("Nenhum histórico encontrado.")
+        print(
+            "Nenhum histórico encontrado."
+        )
 
     print("\n" + "=" * 60)
 
