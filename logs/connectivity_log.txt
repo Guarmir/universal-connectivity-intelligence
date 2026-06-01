@@ -4,3 +4,86 @@
 [2026-05-31 17:08:06.805000] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
 [2026-05-31 17:42:17.100929] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
 [2026-05-31 17:42:47.196378] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 17:56:05.720835] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 17:56:35.831202] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 17:57:05.939535] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 17:57:36.049770] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 17:58:06.141749] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 17:58:36.251813] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 17:59:06.462850] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 17:59:36.578238] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:00:06.705317] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:00:36.852592] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:01:06.956629] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:01:37.070252] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:02:07.236316] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:02:37.354585] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:03:07.448076] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:03:37.557650] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:04:07.676223] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:04:37.799255] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:05:07.907877] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:05:38.021805] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:06:08.168191] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:06:38.278100] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:07:08.396772] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:07:38.512278] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:08:08.626733] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:08:38.729450] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:09:08.835204] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:09:39.849821] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:10:09.966125] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:10:40.086217] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:19:34.804751] MUDANÇA DETECTADA: Nova interface detectada: Topaz Loopback
+[2026-05-31 18:19:34.807749] MUDANÇA DETECTADA: Nova interface detectada: Radmin VPN
+[2026-05-31 18:19:34.809749] MUDANÇA DETECTADA: Nova interface detectada: Wi-Fi
+[2026-05-31 18:19:34.811749] MUDANÇA DETECTADA: Nova interface detectada: Conexão Local* 11
+[2026-05-31 18:19:34.818744] MUDANÇA DETECTADA: Nova interface detectada: Conexão Local* 2
+[2026-05-31 18:19:34.820745] MUDANÇA DETECTADA: Nova interface detectada: Loopback Pseudo-Interface 1
+[2026-05-31 18:19:34.892697] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:20:07.970533] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:20:38.097324] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:21:08.191059] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:21:38.292423] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:22:08.389687] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:22:38.547868] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:23:08.652867] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:23:38.753223] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:24:08.871840] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:24:38.984048] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:25:09.077386] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:25:39.169662] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:26:09.279813] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:26:39.383030] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:27:09.473739] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:27:39.563319] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:28:09.731540] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:28:39.854892] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:29:09.952780] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:29:40.057219] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:30:10.163850] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:30:40.275864] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:31:10.380661] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:31:40.481379] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:32:10.575001] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:32:40.730530] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:33:10.821663] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:33:40.919010] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:34:11.010144] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:34:41.111754] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:35:11.211132] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:35:41.310535] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:36:11.421113] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:36:41.535332] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:37:11.663247] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:37:41.768797] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 18:38:11.861183] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 23:17:32.546396] MUDANÇA DETECTADA: Nova interface detectada: Radmin VPN
+[2026-05-31 23:17:32.548394] MUDANÇA DETECTADA: Nova interface detectada: Wi-Fi
+[2026-05-31 23:17:32.551392] MUDANÇA DETECTADA: Nova interface detectada: Topaz Loopback
+[2026-05-31 23:17:32.554391] MUDANÇA DETECTADA: Nova interface detectada: Conexão Local* 2
+[2026-05-31 23:17:32.555390] MUDANÇA DETECTADA: Nova interface detectada: Ethernet
+[2026-05-31 23:17:32.556389] MUDANÇA DETECTADA: Nova interface detectada: Conexão Local* 11
+[2026-05-31 23:17:32.558389] MUDANÇA DETECTADA: Nova interface detectada: Loopback Pseudo-Interface 1
+[2026-05-31 23:17:32.636339] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-05-31 23:18:02.730993] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
