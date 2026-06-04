@@ -96,3 +96,7 @@
 [2026-06-02 00:37:21.247664] Recomendação Contextual: Wi-Fi | Score: 88.55/100
 [2026-06-04 06:30:21.428565] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Score: 88.55/100 | Intelligence Score: 88/100 | Estabilidade: 100/100 | Latência: 58.96 ms | Qualidade: BOA | Risco: BAIXO | Ação: PERMITIR
 [2026-06-04 06:32:57.769100] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Score: 95.2/100 | Intelligence Score: 92/100 | Estabilidade: 100/100 | Latência: 41.98 ms | Qualidade: EXCELENTE | Risco: BAIXO | Ação: PERMITIR
+[2026-06-04 06:46:01.943119] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Score: 88.55/100 | Intelligence Score: 88/100 | Estabilidade: 100/100 | Latência: 51.97 ms | Qualidade: BOA | Risco: BAIXO | Ação: PERMITIR
+[2026-06-04 06:49:26.715161] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Score: 95.2/100 | Intelligence Score: 92/100 | Estabilidade: 100/100 | Latência: 46.97 ms | Qualidade: EXCELENTE | Risco: BAIXO | Ação: PERMITIR
+[2026-06-04 06:52:00.535745] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Score: 95.2/100 | Intelligence Score: 92/100 | Estabilidade: 100/100 | Latência: 46.97 ms | Qualidade: EXCELENTE | Risco: BAIXO | Ação: PERMITIR
+[2026-06-04 06:55:20.245873] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Score: 88.55/100 | Intelligence Score: 88/100 | Estabilidade: 100/100 | Latência: 52.54 ms | Qualidade: BOA | Risco: BAIXO | Ação: PERMITIR

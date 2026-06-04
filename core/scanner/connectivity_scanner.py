@@ -33,6 +33,16 @@ from core.monitor.anomaly_detector import (
     summarize_anomalies,
 )
 
+from core.monitor.degradation_engine import (
+    analyze_degradation,
+    summarize_degradation,
+)
+
+from core.monitor.predictive_engine import (
+    predict_operational_risk,
+    summarize_prediction,
+)
+
 from core.quality.connectivity_quality import (
     measure_latency,
     classify_latency,
@@ -89,11 +99,8 @@ def collect_interfaces():
     collected = []
 
     for interface_name, interface_addresses in interfaces.items():
-
         for address in interface_addresses:
-
             if address.family == socket.AF_INET:
-
                 classification = classify_interface(
                     interface_name,
                     address.address
@@ -114,14 +121,12 @@ def collect_interfaces():
 
 
 def enrich_interfaces_with_intelligence(interfaces):
-
     latency = measure_latency()
     latency_quality = classify_latency(latency)
 
     enriched = []
 
     for interface in interfaces:
-
         risk = analyze_risk(
             interface["trust_score"]
         )
@@ -139,7 +144,6 @@ def enrich_interfaces_with_intelligence(interfaces):
         interface["risk_level"] = risk["risk_level"]
         interface["risk_action"] = risk["action"]
         interface["risk_message"] = risk["message"]
-
         interface["stability_score"] = stability_score
         interface["latency_ms"] = latency
         interface["quality"] = latency_quality
@@ -151,17 +155,13 @@ def enrich_interfaces_with_intelligence(interfaces):
 
         interface["contextual_score"] = contextual_score
 
-        interface["decision_reason"] = (
-            build_decision_reason(
-                interface,
-                contextual_score
-            )
+        interface["decision_reason"] = build_decision_reason(
+            interface,
+            contextual_score
         )
 
-        interface["anomalies"] = (
-            detect_operational_anomalies(
-                interface
-            )
+        interface["anomalies"] = detect_operational_anomalies(
+            interface
         )
 
         enriched.append(interface)
@@ -175,12 +175,10 @@ def enrich_interfaces_with_intelligence(interfaces):
 
 
 def print_detected_interfaces(interfaces):
-
     print("\nINTERFACES DETECTADAS")
     print("-" * 60)
 
     for interface in interfaces:
-
         print(f"\nInterface: {interface['name']}")
         print(f"IPv4: {interface['ip']}")
         print(f"Classificação: {interface['classification']}")
@@ -188,27 +186,20 @@ def print_detected_interfaces(interfaces):
 
 
 def print_baseline_status(baseline_alerts):
-
     print("\nBASELINE INTELIGENTE")
     print("-" * 60)
 
     if baseline_alerts:
-
         for alert in baseline_alerts:
-
             print(
                 f"[{alert['severity']}] "
                 f"{alert['message']}"
             )
-
     else:
-        print(
-            "Ambiente compatível com o baseline."
-        )
+        print("Ambiente compatível com o baseline.")
 
 
 def print_operational_ranking(enriched_interfaces):
-
     print("\nRANKING OPERACIONAL")
     print("-" * 60)
 
@@ -216,26 +207,32 @@ def print_operational_ranking(enriched_interfaces):
         enriched_interfaces,
         start=1
     ):
-
         print(
             f"{position}. "
             f"{interface['name']} | "
-            f"Score: "
-            f"{interface['contextual_score']}/100 | "
-            f"Risco: "
-            f"{interface['risk_level']}"
+            f"Score: {interface['contextual_score']}/100 | "
+            f"Risco: {interface['risk_level']}"
         )
 
 
-def print_anomaly_status(recommended):
+def print_recommendation(recommended):
+    print("\nRECOMENDAÇÃO CONTEXTUAL")
+    print("-" * 60)
 
+    print(f"Interface: {recommended['name']}")
+    print(f"IP: {recommended['ip']}")
+    print(
+        f"Contextual Score: "
+        f"{recommended['contextual_score']}/100"
+    )
+    print(f"Motivos: {recommended['decision_reason']}")
+
+
+def print_anomaly_status(recommended):
     print("\nANOMALIAS OPERACIONAIS")
     print("-" * 60)
 
-    anomalies = recommended.get(
-        "anomalies",
-        []
-    )
+    anomalies = recommended.get("anomalies", [])
 
     print(
         summarize_anomalies(
@@ -244,32 +241,35 @@ def print_anomaly_status(recommended):
     )
 
 
-def print_recommendation(recommended):
-
-    print("\nRECOMENDAÇÃO CONTEXTUAL")
+def print_degradation_status():
+    print("\nDEGRADAÇÃO HISTÓRICA")
     print("-" * 60)
 
-    print(
-        f"Interface: {recommended['name']}"
+    degradation_result = analyze_degradation(
+        limit=10
     )
 
     print(
-        f"IP: {recommended['ip']}"
+        summarize_degradation(
+            degradation_result
+        )
     )
 
-    print(
-        f"Contextual Score: "
-        f"{recommended['contextual_score']}/100"
-    )
+
+def print_prediction_status():
+    print("\nPREVISÃO OPERACIONAL")
+    print("-" * 60)
+
+    prediction_result = predict_operational_risk()
 
     print(
-        f"Motivos: "
-        f"{recommended['decision_reason']}"
+        summarize_prediction(
+            prediction_result
+        )
     )
 
 
 def print_security_status(risk):
-
     print("\nANÁLISE DE SEGURANÇA")
     print("-" * 60)
     print(f"Risco: {risk['risk_level']}")
@@ -278,12 +278,9 @@ def print_security_status(risk):
 
 
 def print_quality_status(recommended):
-
     print("\nESTABILIDADE")
     print("-" * 60)
-    print(
-        f"{recommended['stability_score']}/100"
-    )
+    print(f"{recommended['stability_score']}/100")
 
     print("\nQUALIDADE")
     print("-" * 60)
@@ -291,21 +288,14 @@ def print_quality_status(recommended):
         f"Latência: "
         f"{recommended['latency_ms']} ms"
     )
-
-    print(
-        f"Qualidade: "
-        f"{recommended['quality']}"
-    )
+    print(f"Qualidade: {recommended['quality']}")
 
     print("\nINTELLIGENCE SCORE")
     print("-" * 60)
-    print(
-        f"{recommended['intelligence_score']}/100"
-    )
+    print(f"{recommended['intelligence_score']}/100")
 
 
 def print_emergency_status(emergency):
-
     print("\nCONTROLE DE EMERGÊNCIA")
     print("-" * 60)
     print(f"Status: {emergency['status']}")
@@ -313,7 +303,6 @@ def print_emergency_status(emergency):
 
 
 def print_failover_status(failover):
-
     print("\nFAILOVER")
     print("-" * 60)
     print(f"Status: {failover['status']}")
@@ -322,7 +311,6 @@ def print_failover_status(failover):
 
 
 def print_history():
-
     print("\nHISTÓRICO RECENTE")
     print("-" * 60)
 
@@ -331,39 +319,30 @@ def print_history():
     )
 
     if history:
-
         for line in history:
             print(line.strip())
-
     else:
-        print(
-            "Nenhum histórico encontrado."
-        )
+        print("Nenhum histórico encontrado.")
 
 
 def save_recommendation_log(recommended, risk):
-
     save_log(
         f"Recomendação Contextual: "
         f"{recommended['name']} | "
         f"IP: {recommended['ip']} | "
-        f"Score: "
-        f"{recommended['contextual_score']}/100 | "
+        f"Score: {recommended['contextual_score']}/100 | "
         f"Intelligence Score: "
         f"{recommended['intelligence_score']}/100 | "
         f"Estabilidade: "
         f"{recommended['stability_score']}/100 | "
-        f"Latência: "
-        f"{recommended['latency_ms']} ms | "
-        f"Qualidade: "
-        f"{recommended['quality']} | "
+        f"Latência: {recommended['latency_ms']} ms | "
+        f"Qualidade: {recommended['quality']} | "
         f"Risco: {risk['risk_level']} | "
         f"Ação: {risk['action']}"
     )
 
 
 def run_scan():
-
     print("=" * 60)
     print("INTELIGÊNCIA UNIVERSAL DE CONECTIVIDADE")
     print("=" * 60)
@@ -406,12 +385,9 @@ def run_scan():
     )
 
     if not recommended:
-
         print("\nRECOMENDAÇÃO CONTEXTUAL")
         print("-" * 60)
-        print(
-            "Nenhuma interface operacional disponível."
-        )
+        print("Nenhuma interface operacional disponível.")
 
         print_history()
         print("\n" + "=" * 60)
@@ -439,6 +415,10 @@ def run_scan():
     print_anomaly_status(
         recommended
     )
+
+    print_degradation_status()
+
+    print_prediction_status()
 
     print_security_status(
         risk
