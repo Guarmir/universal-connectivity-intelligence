@@ -90,3 +90,9 @@
 [2026-05-31 23:33:49.559407] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
 [2026-05-31 23:50:33.352399] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Risco: BAIXO | Ação: PERMITIR
 [2026-06-01 23:43:48.436066] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Estabilidade: 100/100 | Latência: 159.72 ms | Qualidade: RUIM | Intelligence Score: 82/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-06-01 23:59:22.575703] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Estabilidade: 100/100 | Latência: 53.97 ms | Qualidade: BOA | Intelligence Score: 88/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-06-02 00:03:03.422755] Recomendação: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Estabilidade: 100/100 | Latência: 54.73 ms | Qualidade: BOA | Intelligence Score: 88/100 | Contextual Score: 88.55/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-06-02 00:08:50.556417] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Trust Score: 80/100 | Estabilidade: 100/100 | Latência: 60.96 ms | Qualidade: BOA | Intelligence Score: 88/100 | Contextual Score: 88.55/100 | Risco: BAIXO | Ação: PERMITIR
+[2026-06-02 00:37:21.247664] Recomendação Contextual: Wi-Fi | Score: 88.55/100
+[2026-06-04 06:30:21.428565] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Score: 88.55/100 | Intelligence Score: 88/100 | Estabilidade: 100/100 | Latência: 58.96 ms | Qualidade: BOA | Risco: BAIXO | Ação: PERMITIR
+[2026-06-04 06:32:57.769100] Recomendação Contextual: Wi-Fi | IP: 192.168.3.16 | Score: 95.2/100 | Intelligence Score: 92/100 | Estabilidade: 100/100 | Latência: 41.98 ms | Qualidade: EXCELENTE | Risco: BAIXO | Ação: PERMITIR

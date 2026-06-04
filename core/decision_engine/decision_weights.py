@@ -1,0 +1,7 @@
+# Pesos oficiais do motor de decisão contextual
+
+INTELLIGENCE_WEIGHT = 0.35
+STABILITY_WEIGHT = 0.25
+LATENCY_WEIGHT = 0.15
+QUALITY_WEIGHT = 0.15
+TRUST_WEIGHT = 0.10
