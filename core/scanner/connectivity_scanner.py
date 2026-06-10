@@ -18,6 +18,9 @@ from core.scanner.scanner_output import (
     print_anomaly_status,
     print_degradation_status,
     print_prediction_status,
+    print_behavior_status,
+    print_operational_profile_status,
+    print_autonomous_status,
     print_security_status,
     print_quality_status,
     print_emergency_status,
@@ -30,8 +33,12 @@ from core.scanner.scanner_output import (
 
 def check_internet():
     try:
-        socket.create_connection(("8.8.8.8", 53), timeout=3)
+        socket.create_connection(
+            ("8.8.8.8", 53),
+            timeout=3
+        )
         return True
+
     except OSError:
         return False
 
@@ -51,7 +58,10 @@ def classify_interface(name, ip):
     if "virtual" in name_lower:
         return "VIRTUAL"
 
-    if "wi-fi" in name_lower or "wifi" in name_lower:
+    if (
+        "wi-fi" in name_lower
+        or "wifi" in name_lower
+    ):
         return "REAL"
 
     if "ethernet" in name_lower:
@@ -70,16 +80,26 @@ def calculate_trust_score(classification):
         "INVALIDA": 0,
     }
 
-    return scores.get(classification, 0)
+    return scores.get(
+        classification,
+        0
+    )
 
 
 def collect_interfaces():
     interfaces = psutil.net_if_addrs()
+
     collected = []
 
-    for interface_name, interface_addresses in interfaces.items():
+    for (
+        interface_name,
+        interface_addresses
+    ) in interfaces.items():
+
         for address in interface_addresses:
+
             if address.family == socket.AF_INET:
+
                 classification = classify_interface(
                     interface_name,
                     address.address
@@ -100,27 +120,80 @@ def collect_interfaces():
 
 
 def save_recommendation_log(analysis):
-    recommended = analysis.get("recommended")
-    risk = analysis.get("risk")
-    adaptive_failover = analysis.get("adaptive_failover")
+    recommended = analysis.get(
+        "recommended"
+    )
 
-    if not recommended or not risk or not adaptive_failover:
+    risk = analysis.get(
+        "risk"
+    )
+
+    adaptive_failover = analysis.get(
+        "adaptive_failover"
+    )
+
+    operational_profile = analysis.get(
+        "operational_profile"
+    )
+
+    autonomous_decision = analysis.get(
+        "autonomous_decision"
+    )
+
+    if (
+        not recommended
+        or not risk
+        or not adaptive_failover
+    ):
         return
+
+    profile_name = "DESCONHECIDO"
+    autonomous_mode = "DESCONHECIDO"
+    autonomous_confidence = "0"
+
+    if operational_profile:
+        profile_name = operational_profile.get(
+            "profile_name",
+            "DESCONHECIDO"
+        )
+
+    if autonomous_decision:
+        autonomous_mode = autonomous_decision.get(
+            "mode",
+            "DESCONHECIDO"
+        )
+
+        autonomous_confidence = autonomous_decision.get(
+            "confidence",
+            0
+        )
 
     save_log(
         f"Recomendação Contextual: "
         f"{recommended['name']} | "
         f"IP: {recommended['ip']} | "
-        f"Score: {recommended['contextual_score']}/100 | "
+        f"Score: "
+        f"{recommended['contextual_score']}/100 | "
         f"Intelligence Score: "
         f"{recommended['intelligence_score']}/100 | "
         f"Estabilidade: "
         f"{recommended['stability_score']}/100 | "
-        f"Latência: {recommended['latency_ms']} ms | "
-        f"Qualidade: {recommended['quality']} | "
-        f"Risco: {risk['risk_level']} | "
-        f"Ação: {risk['action']} | "
-        f"Adaptive Failover: {adaptive_failover['action']}"
+        f"Latência: "
+        f"{recommended['latency_ms']} ms | "
+        f"Qualidade: "
+        f"{recommended['quality']} | "
+        f"Perfil Operacional: "
+        f"{profile_name} | "
+        f"Autonomia: "
+        f"{autonomous_mode} | "
+        f"Confiança Autônoma: "
+        f"{autonomous_confidence}/100 | "
+        f"Risco: "
+        f"{risk['risk_level']} | "
+        f"Ação: "
+        f"{risk['action']} | "
+        f"Adaptive Failover: "
+        f"{adaptive_failover['action']}"
     )
 
 
@@ -137,12 +210,21 @@ def render_scan_output(analysis):
         analysis["enriched_interfaces"]
     )
 
-    recommended = analysis.get("recommended")
+    recommended = analysis.get(
+        "recommended"
+    )
 
     if not recommended:
         print_no_recommendation()
+
+        print_autonomous_status(
+            analysis["autonomous_decision"]
+        )
+
         print_history()
+
         print_footer()
+
         return
 
     print_recommendation(
@@ -159,6 +241,18 @@ def render_scan_output(analysis):
 
     print_prediction_status(
         analysis["prediction_result"]
+    )
+
+    print_behavior_status(
+        analysis["behavior_result"]
+    )
+
+    print_operational_profile_status(
+        analysis["operational_profile"]
+    )
+
+    print_autonomous_status(
+        analysis["autonomous_decision"]
     )
 
     print_security_status(
@@ -182,17 +276,27 @@ def render_scan_output(analysis):
     )
 
     print_history()
+
     print_footer()
 
 
 def run_scan():
     print_header()
-    print(f"Data/Hora: {datetime.now()}")
+
+    print(
+        f"Data/Hora: "
+        f"{datetime.now()}"
+    )
 
     if check_internet():
-        print("Status: INTERNET DISPONÍVEL")
+        print(
+            "Status: INTERNET DISPONÍVEL"
+        )
+
     else:
-        print("Status: SEM INTERNET")
+        print(
+            "Status: SEM INTERNET"
+        )
 
     interfaces = collect_interfaces()
 

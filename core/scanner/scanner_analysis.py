@@ -23,6 +23,13 @@ from core.monitor.anomaly_detector import detect_operational_anomalies
 from core.monitor.degradation_engine import analyze_degradation
 from core.monitor.predictive_engine import predict_operational_risk
 
+from core.behavior.behavioral_engine import analyze_behavior
+from core.behavior.profile_engine import generate_operational_profile
+
+from core.autonomous.autonomous_engine import (
+    make_autonomous_decision,
+)
+
 from core.quality.connectivity_quality import (
     measure_latency,
     classify_latency,
@@ -30,12 +37,17 @@ from core.quality.connectivity_quality import (
 
 
 def enrich_interfaces_with_intelligence(interfaces):
+
     latency = measure_latency()
-    latency_quality = classify_latency(latency)
+
+    latency_quality = classify_latency(
+        latency
+    )
 
     enriched = []
 
     for interface in interfaces:
+
         risk = analyze_risk(
             interface["trust_score"]
         )
@@ -53,9 +65,13 @@ def enrich_interfaces_with_intelligence(interfaces):
         interface["risk_level"] = risk["risk_level"]
         interface["risk_action"] = risk["action"]
         interface["risk_message"] = risk["message"]
+
         interface["stability_score"] = stability_score
+
         interface["latency_ms"] = latency
+
         interface["quality"] = latency_quality
+
         interface["intelligence_score"] = intelligence_score
 
         contextual_score = calculate_contextual_score(
@@ -84,6 +100,7 @@ def enrich_interfaces_with_intelligence(interfaces):
 
 
 def build_risk_payload(recommended):
+
     return {
         "risk_level": recommended["risk_level"],
         "action": recommended["risk_action"],
@@ -91,7 +108,10 @@ def build_risk_payload(recommended):
     }
 
 
-def execute_operational_analysis(interfaces):
+def execute_operational_analysis(
+    interfaces
+):
+
     baseline_alerts = compare_with_intelligent_baseline(
         interfaces
     )
@@ -108,7 +128,21 @@ def execute_operational_analysis(interfaces):
         enriched_interfaces
     )
 
+    behavior_result = analyze_behavior(
+        limit=100
+    )
+
+    operational_profile = generate_operational_profile()
+
     if not recommended:
+
+        autonomous_decision = make_autonomous_decision(
+            None,
+            {},
+            operational_profile,
+            {},
+        )
+
         return {
             "interfaces": interfaces,
             "baseline_alerts": baseline_alerts,
@@ -121,6 +155,9 @@ def execute_operational_analysis(interfaces):
             "degradation_result": None,
             "prediction_result": None,
             "adaptive_failover": None,
+            "behavior_result": behavior_result,
+            "operational_profile": operational_profile,
+            "autonomous_decision": autonomous_decision,
         }
 
     degradation_result = analyze_degradation(
@@ -133,6 +170,13 @@ def execute_operational_analysis(interfaces):
         recommended,
         prediction_result,
         degradation_result,
+    )
+
+    autonomous_decision = make_autonomous_decision(
+        recommended,
+        prediction_result,
+        operational_profile,
+        adaptive_failover,
     )
 
     risk = build_risk_payload(
@@ -160,4 +204,7 @@ def execute_operational_analysis(interfaces):
         "degradation_result": degradation_result,
         "prediction_result": prediction_result,
         "adaptive_failover": adaptive_failover,
+        "behavior_result": behavior_result,
+        "operational_profile": operational_profile,
+        "autonomous_decision": autonomous_decision,
     }
