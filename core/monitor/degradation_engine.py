@@ -2,14 +2,6 @@ from core.monitor.history_reader import read_last_logs
 
 
 def extract_metric_from_log(line, metric_name):
-    """
-    Extrai um valor numérico simples de uma linha de log.
-    Exemplo:
-    Latência: 58.96 ms
-    Intelligence Score: 88/100
-    Estabilidade: 100/100
-    """
-
     try:
         if metric_name not in line:
             return None
@@ -45,19 +37,43 @@ def calculate_average(values):
     )
 
 
-def analyze_degradation(limit=10):
+def filter_invalid_stability_values(values):
     """
-    Analisa os últimos logs e identifica sinais
-    de degradação histórica.
+    Remove quedas artificiais de estabilidade 0
+    quando houver valores saudáveis recentes.
     """
 
+    valid_values = [
+        value for value in values
+        if value is not None
+    ]
+
+    if not valid_values:
+        return []
+
+    healthy_values = [
+        value for value in valid_values
+        if value >= 80
+    ]
+
+    if healthy_values:
+        return [
+            value for value in valid_values
+            if value > 0
+        ]
+
+    return valid_values
+
+
+def analyze_degradation(limit=10):
     logs = read_last_logs(limit=limit)
 
     if not logs:
         return {
             "status": "SEM_HISTORICO",
             "message": "Histórico insuficiente para análise de degradação.",
-            "details": []
+            "details": [],
+            "averages": {}
         }
 
     latency_values = []
@@ -86,6 +102,10 @@ def analyze_degradation(limit=10):
             )
         )
 
+    filtered_stability_values = filter_invalid_stability_values(
+        stability_values
+    )
+
     avg_latency = calculate_average(
         latency_values
     )
@@ -95,21 +115,33 @@ def analyze_degradation(limit=10):
     )
 
     avg_stability = calculate_average(
-        stability_values
+        filtered_stability_values
     )
 
     alerts = []
 
-    latest_latency = latency_values[-1] if latency_values else None
-    latest_intelligence = (
-        intelligence_values[-1]
-        if intelligence_values
-        else None
+    latest_latency = next(
+        (
+            value for value in reversed(latency_values)
+            if value is not None
+        ),
+        None
     )
-    latest_stability = (
-        stability_values[-1]
-        if stability_values
-        else None
+
+    latest_intelligence = next(
+        (
+            value for value in reversed(intelligence_values)
+            if value is not None
+        ),
+        None
+    )
+
+    latest_stability = next(
+        (
+            value for value in reversed(filtered_stability_values)
+            if value is not None
+        ),
+        None
     )
 
     if (
@@ -129,7 +161,7 @@ def analyze_degradation(limit=10):
     if (
         avg_intelligence is not None
         and latest_intelligence is not None
-        and latest_intelligence < avg_intelligence * 0.85
+        and latest_intelligence < avg_intelligence * 0.70
     ):
         alerts.append({
             "type": "INTELLIGENCE_EM_QUEDA",
@@ -143,7 +175,7 @@ def analyze_degradation(limit=10):
     if (
         avg_stability is not None
         and latest_stability is not None
-        and latest_stability < avg_stability * 0.85
+        and latest_stability < avg_stability * 0.70
     ):
         alerts.append({
             "type": "ESTABILIDADE_EM_QUEDA",
@@ -179,10 +211,6 @@ def analyze_degradation(limit=10):
 
 
 def summarize_degradation(degradation_result):
-    """
-    Gera resumo textual da análise de degradação.
-    """
-
     if not degradation_result:
         return "Análise de degradação indisponível."
 

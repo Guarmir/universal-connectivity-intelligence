@@ -21,6 +21,7 @@ from core.scanner.scanner_output import (
     print_behavior_status,
     print_operational_profile_status,
     print_autonomous_status,
+    print_preventive_status,
     print_security_status,
     print_quality_status,
     print_emergency_status,
@@ -140,6 +141,10 @@ def save_recommendation_log(analysis):
         "autonomous_decision"
     )
 
+    preventive_recommendation = analysis.get(
+        "preventive_recommendation"
+    )
+
     if (
         not recommended
         or not risk
@@ -149,7 +154,9 @@ def save_recommendation_log(analysis):
 
     profile_name = "DESCONHECIDO"
     autonomous_mode = "DESCONHECIDO"
-    autonomous_confidence = "0"
+    autonomous_confidence = 0
+    preventive_level = "DESCONHECIDO"
+    preventive_action = "DESCONHECIDO"
 
     if operational_profile:
         profile_name = operational_profile.get(
@@ -166,6 +173,17 @@ def save_recommendation_log(analysis):
         autonomous_confidence = autonomous_decision.get(
             "confidence",
             0
+        )
+
+    if preventive_recommendation:
+        preventive_level = preventive_recommendation.get(
+            "level",
+            "DESCONHECIDO"
+        )
+
+        preventive_action = preventive_recommendation.get(
+            "action",
+            "DESCONHECIDO"
         )
 
     save_log(
@@ -188,6 +206,10 @@ def save_recommendation_log(analysis):
         f"{autonomous_mode} | "
         f"Confiança Autônoma: "
         f"{autonomous_confidence}/100 | "
+        f"Prevenção: "
+        f"{preventive_level} | "
+        f"Ação Preventiva: "
+        f"{preventive_action} | "
         f"Risco: "
         f"{risk['risk_level']} | "
         f"Ação: "
@@ -219,6 +241,10 @@ def render_scan_output(analysis):
 
         print_autonomous_status(
             analysis["autonomous_decision"]
+        )
+
+        print_preventive_status(
+            analysis["preventive_recommendation"]
         )
 
         print_history()
@@ -253,6 +279,10 @@ def render_scan_output(analysis):
 
     print_autonomous_status(
         analysis["autonomous_decision"]
+    )
+
+    print_preventive_status(
+        analysis["preventive_recommendation"]
     )
 
     print_security_status(
