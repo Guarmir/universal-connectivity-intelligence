@@ -28,6 +28,10 @@ from core.prevention.preventive_engine import (
     summarize_preventive_recommendation,
 )
 
+from core.self_healing.self_healing_engine import (
+    summarize_self_healing,
+)
+
 
 def print_header():
     print("=" * 60)
@@ -127,6 +131,12 @@ def print_preventive_status(preventive_recommendation):
     print_section("AÇÃO PREVENTIVA")
 
     print(summarize_preventive_recommendation(preventive_recommendation))
+
+
+def print_self_healing_status(self_healing_result):
+    print_section("SELF-HEALING")
+
+    print(summarize_self_healing(self_healing_result))
 
 
 def print_security_status(risk):

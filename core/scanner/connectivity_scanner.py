@@ -22,6 +22,7 @@ from core.scanner.scanner_output import (
     print_operational_profile_status,
     print_autonomous_status,
     print_preventive_status,
+    print_self_healing_status,
     print_security_status,
     print_quality_status,
     print_emergency_status,
@@ -145,6 +146,10 @@ def save_recommendation_log(analysis):
         "preventive_recommendation"
     )
 
+    self_healing_result = analysis.get(
+        "self_healing_result"
+    )
+
     if (
         not recommended
         or not risk
@@ -157,6 +162,8 @@ def save_recommendation_log(analysis):
     autonomous_confidence = 0
     preventive_level = "DESCONHECIDO"
     preventive_action = "DESCONHECIDO"
+    self_healing_status = "DESCONHECIDO"
+    self_healing_action = "DESCONHECIDO"
 
     if operational_profile:
         profile_name = operational_profile.get(
@@ -186,6 +193,17 @@ def save_recommendation_log(analysis):
             "DESCONHECIDO"
         )
 
+    if self_healing_result:
+        self_healing_status = self_healing_result.get(
+            "status",
+            "DESCONHECIDO"
+        )
+
+        self_healing_action = self_healing_result.get(
+            "action",
+            "DESCONHECIDO"
+        )
+
     save_log(
         f"Recomendação Contextual: "
         f"{recommended['name']} | "
@@ -210,6 +228,10 @@ def save_recommendation_log(analysis):
         f"{preventive_level} | "
         f"Ação Preventiva: "
         f"{preventive_action} | "
+        f"Self-Healing: "
+        f"{self_healing_status} | "
+        f"Ação Self-Healing: "
+        f"{self_healing_action} | "
         f"Risco: "
         f"{risk['risk_level']} | "
         f"Ação: "
@@ -245,6 +267,10 @@ def render_scan_output(analysis):
 
         print_preventive_status(
             analysis["preventive_recommendation"]
+        )
+
+        print_self_healing_status(
+            analysis["self_healing_result"]
         )
 
         print_history()
@@ -283,6 +309,10 @@ def render_scan_output(analysis):
 
     print_preventive_status(
         analysis["preventive_recommendation"]
+    )
+
+    print_self_healing_status(
+        analysis["self_healing_result"]
     )
 
     print_security_status(
