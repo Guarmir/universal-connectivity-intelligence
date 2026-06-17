@@ -23,6 +23,9 @@ from core.scanner.scanner_output import (
     print_autonomous_status,
     print_preventive_status,
     print_self_healing_status,
+    print_learning_status,
+    print_context_status,
+    print_evolution_status,
     print_security_status,
     print_quality_status,
     print_emergency_status,
@@ -150,6 +153,18 @@ def save_recommendation_log(analysis):
         "self_healing_result"
     )
 
+    learning_result = analysis.get(
+        "learning_result"
+    )
+
+    context_result = analysis.get(
+        "context_result"
+    )
+
+    evolution_result = analysis.get(
+        "evolution_result"
+    )
+
     if (
         not recommended
         or not risk
@@ -164,6 +179,12 @@ def save_recommendation_log(analysis):
     preventive_action = "DESCONHECIDO"
     self_healing_status = "DESCONHECIDO"
     self_healing_action = "DESCONHECIDO"
+    learning_status = "DESCONHECIDO"
+    learning_score = 0
+    context_status = "DESCONHECIDO"
+    context_score = 0
+    evolution_status = "DESCONHECIDO"
+    evolution_score = 0
 
     if operational_profile:
         profile_name = operational_profile.get(
@@ -204,6 +225,39 @@ def save_recommendation_log(analysis):
             "DESCONHECIDO"
         )
 
+    if learning_result:
+        learning_status = learning_result.get(
+            "status",
+            "DESCONHECIDO"
+        )
+
+        learning_score = learning_result.get(
+            "score",
+            0
+        )
+
+    if context_result:
+        context_status = context_result.get(
+            "status",
+            "DESCONHECIDO"
+        )
+
+        context_score = context_result.get(
+            "awareness_score",
+            0
+        )
+
+    if evolution_result:
+        evolution_status = evolution_result.get(
+            "status",
+            "DESCONHECIDO"
+        )
+
+        evolution_score = evolution_result.get(
+            "evolution_score",
+            0
+        )
+
     save_log(
         f"Recomendação Contextual: "
         f"{recommended['name']} | "
@@ -232,6 +286,18 @@ def save_recommendation_log(analysis):
         f"{self_healing_status} | "
         f"Ação Self-Healing: "
         f"{self_healing_action} | "
+        f"Learning: "
+        f"{learning_status} | "
+        f"Learning Score: "
+        f"{learning_score}/100 | "
+        f"Contexto: "
+        f"{context_status} | "
+        f"Awareness Score: "
+        f"{context_score}/100 | "
+        f"Evolução: "
+        f"{evolution_status} | "
+        f"Evolution Score: "
+        f"{evolution_score}/100 | "
         f"Risco: "
         f"{risk['risk_level']} | "
         f"Ação: "
@@ -271,6 +337,18 @@ def render_scan_output(analysis):
 
         print_self_healing_status(
             analysis["self_healing_result"]
+        )
+
+        print_learning_status(
+            analysis["learning_result"]
+        )
+
+        print_context_status(
+            analysis["context_result"]
+        )
+
+        print_evolution_status(
+            analysis["evolution_result"]
         )
 
         print_history()
@@ -313,6 +391,18 @@ def render_scan_output(analysis):
 
     print_self_healing_status(
         analysis["self_healing_result"]
+    )
+
+    print_learning_status(
+        analysis["learning_result"]
+    )
+
+    print_context_status(
+        analysis["context_result"]
+    )
+
+    print_evolution_status(
+        analysis["evolution_result"]
     )
 
     print_security_status(

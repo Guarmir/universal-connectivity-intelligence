@@ -38,6 +38,18 @@ from core.self_healing.self_healing_engine import (
     evaluate_self_healing,
 )
 
+from core.learning.learning_engine import (
+    generate_learning_analysis,
+)
+
+from core.context.context_engine import (
+    generate_context_awareness,
+)
+
+from core.evolution.evolution_engine import (
+    analyze_decision_evolution,
+)
+
 from core.quality.connectivity_quality import (
     measure_latency,
     classify_latency,
@@ -129,6 +141,18 @@ def execute_operational_analysis(interfaces):
 
     operational_profile = generate_operational_profile()
 
+    learning_result = generate_learning_analysis(
+        limit=50
+    )
+
+    context_result = generate_context_awareness(
+        limit=50
+    )
+
+    evolution_result = analyze_decision_evolution(
+        limit=50
+    )
+
     if not recommended:
         autonomous_decision = make_autonomous_decision(
             None,
@@ -170,6 +194,9 @@ def execute_operational_analysis(interfaces):
             "autonomous_decision": autonomous_decision,
             "preventive_recommendation": preventive_recommendation,
             "self_healing_result": self_healing_result,
+            "learning_result": learning_result,
+            "context_result": context_result,
+            "evolution_result": evolution_result,
         }
 
     degradation_result = analyze_degradation(
@@ -235,4 +262,7 @@ def execute_operational_analysis(interfaces):
         "autonomous_decision": autonomous_decision,
         "preventive_recommendation": preventive_recommendation,
         "self_healing_result": self_healing_result,
+        "learning_result": learning_result,
+        "context_result": context_result,
+        "evolution_result": evolution_result,
     }
