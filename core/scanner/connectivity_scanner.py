@@ -13,6 +13,7 @@ from core.scanner.scanner_output import (
     print_detected_interfaces,
     print_baseline_status,
     print_operational_ranking,
+    print_multi_network_status,
     print_recommendation,
     print_no_recommendation,
     print_anomaly_status,
@@ -320,6 +321,10 @@ def render_scan_output(analysis):
         analysis["enriched_interfaces"]
     )
 
+    print_multi_network_status(
+    analysis["multi_network_result"]
+    )
+    
     recommended = analysis.get(
         "recommended"
     )

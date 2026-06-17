@@ -16,6 +16,7 @@ from core.security_engine.risk_analyzer import analyze_risk
 from core.emergency_control.emergency_controller import emergency_check
 from core.failover.failover_engine import evaluate_failover
 from core.failover.adaptive_failover import evaluate_adaptive_failover
+from core.failover.multi_network_engine import analyze_multi_network
 
 from core.monitor.stability_engine import calculate_stability_score
 from core.monitor.intelligent_baseline import compare_with_intelligent_baseline
@@ -131,6 +132,10 @@ def execute_operational_analysis(interfaces):
         operational_interfaces
     )
 
+    multi_network_result = analyze_multi_network(
+        enriched_interfaces
+    )
+
     recommended = recommend_contextual_interface(
         enriched_interfaces
     )
@@ -182,6 +187,7 @@ def execute_operational_analysis(interfaces):
             "baseline_alerts": baseline_alerts,
             "operational_interfaces": operational_interfaces,
             "enriched_interfaces": enriched_interfaces,
+            "multi_network_result": multi_network_result,
             "recommended": None,
             "risk": None,
             "emergency": None,
@@ -250,6 +256,7 @@ def execute_operational_analysis(interfaces):
         "baseline_alerts": baseline_alerts,
         "operational_interfaces": operational_interfaces,
         "enriched_interfaces": enriched_interfaces,
+        "multi_network_result": multi_network_result,
         "recommended": recommended,
         "risk": risk,
         "emergency": emergency,
