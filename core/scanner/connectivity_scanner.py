@@ -34,6 +34,7 @@ from core.scanner.scanner_output import (
     print_adaptive_failover_status,
     print_history,
     print_footer,
+    print_reputation_status,
 )
 
 
@@ -324,7 +325,7 @@ def render_scan_output(analysis):
     print_multi_network_status(
     analysis["multi_network_result"]
     )
-    
+
     recommended = analysis.get(
         "recommended"
     )
@@ -363,11 +364,15 @@ def render_scan_output(analysis):
         return
 
     print_recommendation(
-        recommended
+    recommended
+    )
+
+    print_reputation_status(
+    recommended
     )
 
     print_anomaly_status(
-        recommended
+    recommended
     )
 
     print_degradation_status(

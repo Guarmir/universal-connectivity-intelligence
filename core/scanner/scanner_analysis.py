@@ -51,6 +51,10 @@ from core.evolution.evolution_engine import (
     analyze_decision_evolution,
 )
 
+from core.reputation.reputation_engine import (
+    calculate_interface_reputation,
+)
+
 from core.quality.connectivity_quality import (
     measure_latency,
     classify_latency,
@@ -72,6 +76,10 @@ def enrich_interfaces_with_intelligence(interfaces):
             interface["name"]
         )
 
+        reputation = calculate_interface_reputation(
+            interface["name"]
+        )
+
         intelligence_score = calculate_intelligence_score(
             interface["trust_score"],
             stability_score,
@@ -85,16 +93,42 @@ def enrich_interfaces_with_intelligence(interfaces):
         interface["latency_ms"] = latency
         interface["quality"] = latency_quality
         interface["intelligence_score"] = intelligence_score
+        interface["reputation_score"] = reputation["score"]
+        interface["reputation_classification"] = reputation["classification"]
+        interface["reputation_successes"] = reputation["successes"]
+        interface["reputation_failures"] = reputation["failures"]
 
         contextual_score = calculate_contextual_score(
             interface
         )
 
-        interface["contextual_score"] = contextual_score
+        reputation_bonus = 0
+
+        if reputation["score"] >= 90:
+            reputation_bonus = 5
+
+        elif reputation["score"] >= 70:
+            reputation_bonus = 3
+
+        elif reputation["score"] < 50:
+            reputation_bonus = -8
+
+        contextual_score = contextual_score + reputation_bonus
+
+        if contextual_score > 100:
+            contextual_score = 100
+
+        if contextual_score < 0:
+            contextual_score = 0
+
+        interface["contextual_score"] = round(
+            contextual_score,
+            2
+        )
 
         interface["decision_reason"] = build_decision_reason(
             interface,
-            contextual_score
+            interface["contextual_score"]
         )
 
         interface["anomalies"] = detect_operational_anomalies(

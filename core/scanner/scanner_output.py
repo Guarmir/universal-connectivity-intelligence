@@ -52,7 +52,8 @@ def print_operational_ranking(enriched_interfaces):
         print(
             f"{position}. {interface['name']} | "
             f"Score: {interface['contextual_score']}/100 | "
-            f"Risco: {interface['risk_level']}"
+            f"Risco: {interface['risk_level']} | "
+            f"Reputação: {interface.get('reputation_score', 0)}/100"
         )
 
 
@@ -68,6 +69,19 @@ def print_recommendation(recommended):
     print(f"IP: {recommended['ip']}")
     print(f"Contextual Score: {recommended['contextual_score']}/100")
     print(f"Motivos: {recommended['decision_reason']}")
+
+
+def print_reputation_status(recommended):
+    print_section("REPUTAÇÃO DA INTERFACE")
+
+    print(f"Interface: {recommended['name']}")
+    print(f"Reputation Score: {recommended.get('reputation_score', 0)}/100")
+    print(
+        f"Classificação: "
+        f"{recommended.get('reputation_classification', 'DESCONHECIDA')}"
+    )
+    print(f"Sucessos históricos: {recommended.get('reputation_successes', 0)}")
+    print(f"Falhas históricas: {recommended.get('reputation_failures', 0)}")
 
 
 def print_no_recommendation():
